@@ -1,0 +1,314 @@
+Dice Roller demo notes
+
+You've seen the test code in the JavaScript Ratings Calculator starter project. 
+
+Let's walk through the Dice Roller exercise using a test-first approach. 
+
+First let's review how to set up the project structure.
+
+====================
+
+Different ways to set up the boilerplate files for a project.
+
+You've used VSCode features to help you generate a basic index dot html file.
+
+Have you done it by hand? That is, by typing the HTML text yourself?
+
+I suggest you try that a couple of times to build muscle memory for the statements.
+
+Otherwise, you will forever Google.
+
+After that, using features of an editor or IDE will save you time.
+
+But you need to give your editor a hint about what you want.
+
+To do that, you have to remember at least a little of what the text looks like.
+
+
+Let's see what VSCode does for us.
+
+vscode: 
+
+[ctrl+`]			open a terminal inside VSCode
+
+terminal: 
+
+touch sample.html    			Specify the subdirectories and file names that you want. This is just one example.
+mkdir styles
+mkdir scripts
+touch styles/site.css
+touch scripts/diceroller.js
+
+You can also right-click in the Explorer pane and choose 'New file' from the context menu.
+
+But this way is faster.
+
+And it's handy to have the terminal open anyway.
+
+vscode:
+
+[open]				sample.html
+
+<					highlight DOCTYPE in list
+
+[tab]				completes the DOCTYPE tag
+
+[next line]
+
+<ht   				highlight 'html' in list
+
+[tab] 				completes the text '<html'
+
+[space]l   			highlight 'lang' in list 
+
+[tab]				completes text to lang"" and positions cursor between the quotation marks
+
+en					you enter the language value 
+
+[right arrow]		navigate beyond the ending quotation mark 
+
+>					it completes the text '></html>' and positions the cursor before the closing html tag
+
+[enter]				it opens up a blank line and positions the cursor for indentation 
+
+<he   				highlight 'head' in the list 
+
+[tab] 				it completes the text '<head'
+
+> 					it completes the text '></head>' and positions the cursor before the closing head tag
+
+[enter]				it opens up a blank line and positions the cursor for indentation 
+
+<me  				highlight 'meta' in the list 
+
+[tab]				it completes the text '<meta'
+
+[space]c   			highlight 'charset' in the list 
+
+[tab]				it completes the text charset="" and positions the cursor between the quotation marks
+
+UTF-8   			you enter the character set name
+
+[right-arrow]  		navigate beyond the closing quotation mark 
+
+>     				close the tag 
+
+[enter]				it opens a blank line and positions the cursor right under the previous meta tag
+
+<me   				highlight 'meta' in the list 
+
+[tab]				it completes the text <meta 
+
+[space]n           highlight 'name' in the list 
+
+[tab]				it completes the text name="" and positions the cursor between the quotation marks
+
+v     				highlight 'viewport' in the list 
+
+[tab]     			it completes the text 'viewport'
+
+[right arrow]		navigate beyond the closing quotation mark 
+
+[space]c    		highlight 'content' in the list 
+
+[tab]				it completes the text content="" and positions the cursor between the quotation marks
+
+w     				highlight 'width' in the list 
+
+[tab]				it completes the text content="width"
+
+=d     				highlight 'device-width' in the list 
+
+[tab]				it completes the text content="width=device-width"
+
+[space],[space]i  	highlight 'initial'
+
+[tab]				it completes the text content="width=device-width, initial-scale"
+
+=1.0    			you enter the initial scale value
+
+[right arrow]		navigate beyond the closing quotation mark 
+
+>    				close the meta tag 
+
+[enter]				it opens a blank line and positions the cursor right under the previous meta tag
+
+<ti    				highlight 'title' in the list 
+
+[tab]    			it completes the text '<title'
+
+>     				close the tag  
+
+					it completes the text '<title></title>' and positions the cursor between the opening and closing tags 
+
+Dice Roller 		you type the title text you want 
+
+[end of line]		navigate beyond the </title> tag 
+
+[enter]				it opens a blank line and positions the cursor right under the previous meta tag
+
+<l     				highlight 'link' in the list 
+
+[tab]				it completes the text '<link'
+
+[space]r  			highlight 'rel' in the list 
+
+[tab]    			it completes the text '<link rel=""' and positions the cursor between the quotation marks 
+
+stylesheet 			you enter the keyword 'stylesheet'
+
+[space]h   			highlight 'href' in the list 
+
+[tab]    			it completes the text '<link rel="stylesheet href=""' and positions the cursor between the quotation marks 
+
+[ctrl+space]   		control space causes VSCode to open a list here - in this case, it doesn't do so automatically
+
+					highlight the subdirectory where your stylesheet resides 
+
+[tab]   			it completes the text '<link rel="stylesheet" href="styles/'
+
+If your stylesheet is under multiple subdirectories, repeat this step until you reach the subdirectory where the stylesheet resides.
+
+					highlight the name of your stylesheet in the list 
+
+[tab] 				it completes the text '<link rel="stylesheet" href="styles/site.css'
+
+>    				close the tag
+
+[ctrl+s]/[cmd+s] 	save the file   
+
+
+Most mainstream text editors intended for programming have similar features to help us remember and enter common code snippets.
+
+It's helpful because it saves time and because we can't make a typing mistake. 
+
+But it's still a little tedious.
+
+People who do this for a living usually prepare boilerplate files like this and copy them into new projects,
+
+rather than typing in the text manually or going through a series of steps in their editor. 
+
+====================
+
+Set up mocha 
+
+npm install -g mocha 
+npm install -g chai
+npm install --save-dev mocha
+npm install --save-dev chai
+
+mkdir test
+touch test/test.js 
+
+npm init 
+package name: (dice-roller)					[enter] to accept default
+version: (1.0.0)							[enter] to accept default
+description: Dice Roller   					[enter]  
+entry point: (index.js)      				[enter] to accept default  
+test command: mocha    						[enter]  
+git repository: https://github.com/neopragma/dice-roller  	[enter]
+keywords:    								[enter] 
+author: [your name]  						[enter] 
+license: (ISC)    							[enter] to accept default 
+Is this OK? (yes)  							[enter]  
+
+You can look at package.json to see what this command generated for you. 
+
+====================
+
+What does it mean to "test drive" the Dice Roller? 
+
+Let's follow the instructions step by step. 
+
+We'll do what a TDD practitioner would do for each step.
+
+First: "The user should be able to tell you how many dice they want to roll. Create a text input element."
+
+At this point, we think about what the instructions mean.
+
+If we were not test-driving the application, we would code a text input element in the html file and move on to the next instruction.
+
+Maybe we would give the element an id that expresses its purpose, like diceToRoll.
+
+When we're test-driving, we code an example that demonstrates whether the application has the desired functionality.
+
+In this case, we want to check that the index.html document contains an input element of type text with the id diceToRoll.
+
+(add that test, watch it fail, add the code, watch it pass)
+
+Notice Eric's instructions say this: "Design, in this sense, doesn't just refer to the way the application is presented to the user, but to the way the code itself is designed to function."
+
+So what about this input element? What are some details we might want to consider? 
+
+I will suggest that it makes no sense for the user to roll zero dice. 
+
+Should we add a test case to assert that the solution requires a value of at least 1 in this field? 
+
+(add the test case)
+
+Okay. What's a reasonable maximum number of dice to roll? Right now, the application supports infinity dice. Is that practical?
+
+Let's add a reasonable upper limit. 
+
+(add the test case)
+
+Well, if they can't enter a number larger than 12, they don't need to be able to type more than two characters.
+
+We can enforce that with the HTML specification.
+
+(add the test case)
+
+The field doesn't need to be as large as the default size, since we're only accepting two characters of input. Let's fix that.
+
+(add the test case)
+
+What else can we handle through the HTML, so we don't have to write JavaScript code to do it?
+
+What happens if the user enters a value other than a number in this field? Would that be okay? No, I don't think it would.
+
+Let's add a specification to allow only numbers in the field. 
+
+(add the test case)
+
+So far so good. What's next? Think about the user's experience. You've probably used web applications
+
+where you have to put the cursor in the first input field before you can do anything.
+
+Wouldn't it be nicer if the application already knew what the first input field was, and put the cursor in it automatically?
+
+Let's add that. 
+
+(add the test case)
+
+What else can we do to enhance the user's experience?
+
+Usually when people play with dice, they roll two dice. What if we set a default value of 2 in the field?
+
+(add the test case)
+
+
+We don't need to complete the whole exercise in this way. TDD in depth is out of scope for this program.
+
+But we want you to be aware of the technique. 
+
+TDD has seven specific advantages over writing the code before we test it:
+
+1. It reminds us of what we're trying to accomplish in this step.
+
+2. It helps us think about boundary conditions, edge cases, and other details we might overlook if we aren't checking as we go.
+
+3. It tells us when to stop - when the test case passes, we don't need to add any more functionality to the application.
+   If we know we need more functionality to complete the system, then we do that by writing another example to force us to write the corresponding code.
+   Taking the technical design too far is called "over engineering". It's a big problem in our industry.
+
+4. It provides low-level documentation of the application that can never get out of sync with the actual code. 
+
+5. It gives us a small success to celebrate, so we won't get ground down during a long day of coding and testing. 
+
+6. It builds up a regression test suite that will continue to be useful throughout the lifetime of the application. 
+
+7. It builds up a set of examples that help new team members learn the application quickly. 
+
+
+
+
