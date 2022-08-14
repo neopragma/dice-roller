@@ -194,9 +194,10 @@ Set up mocha
 
 npm install -g mocha 
 npm install -g chai
+npm install -g cheerio
 npm install --save-dev mocha
 npm install --save-dev chai
-
+npm install --save-dev cheerio
 mkdir test
 touch test/test.js 
 
